@@ -10,8 +10,7 @@ def skill_matcher(resume_skills , job_skills):
 
     matching_skills = resume_skills & job_skills
     missing_skills = job_skills - resume_skills
-
-    matching_percent = len(matching_skills)/len(job_skills)*100
+    matching_percent = round(len(matching_skills) / len(job_skills) * 100, 2)
 
     if len(job_skills) == 0 :
         return 0 , matching_skills , missing_skills
