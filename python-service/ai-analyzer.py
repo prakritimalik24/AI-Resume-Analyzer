@@ -63,7 +63,7 @@ def analyze_resume(resume_text, job_description):
         {"role": "system", "content": "You are an expert resume analyzer."},
         {"role": "user", "content": prompt}
     ]
-    response_format={"type": "json_object"}
+    response_format={"type": "json_object"} 
     )
 
     result = response.choices[0].message.content
