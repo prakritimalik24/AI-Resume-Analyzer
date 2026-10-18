@@ -1,23 +1,31 @@
-r_skills = input("enter resume skills:").split()
-j_skills = input("enter job skills:").split()
+def skill_matcher(analysis):
+
+    resume_skills = {
+         skill.lower().strip()
+         for skill in analysis["resume_skills"]
+      }
+
+    job_requirements = {
+             item["skill"].lower().strip()
+             for item in analysis["job_requirements"]
+          }
+
+    matching_skills = resume_skills & job_requirements
+    missing_skills = job_requirements - resume_skills
+
+    matched = len(matching_skills)
+    req_skills = len(job_requirements)
+
+    if req_skills == 0 :
+        matching_percent = 0 
+    
+    else:
+        matching_percent = (matched / req_skills)*100
 
 
+    return {
+        "matching_percent": round(matching_percent, 2),
+        "matching_skills": list(matching_skills),
+        "missing_skills": list(missing_skills)
+    }
 
-
-def skill_matcher(resume_skills , job_skills):
-    resume_skills = {skill.lower() for skill in resume_skills}
-    job_skills = {skill.lower() for skill in job_skills}
-
-    matching_skills = resume_skills & job_skills
-    missing_skills = job_skills - resume_skills
-    matching_percent = round(len(matching_skills) / len(job_skills) * 100, 2)
-
-    if len(job_skills) == 0 :
-        return 0 , matching_skills , missing_skills
-
-   
-    return matching_percent , matching_skills ,missing_skills
-
-
-result = skill_matcher(r_skills,j_skills)
-print(result)
