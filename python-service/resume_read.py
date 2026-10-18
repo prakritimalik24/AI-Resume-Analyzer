@@ -3,17 +3,14 @@ from PIL import Image
 import pytesseract
 
 def extractpdftext(file_path):
-    text = ""
+   text = ""
 
-    with pymupdf.open(file_path) as pdf:
+   with pymupdf.open(file_path) as pdf:
          for page in pdf:
              text = text + page.get_text()
 
-    return text
+   return text
 
-result = extractpdftext(file_path)
-
-print(result)
 
 def extractimgtext(image_path):
    text = ""
@@ -23,8 +20,7 @@ def extractimgtext(image_path):
 
    return text
 
-result = extractimgtext(image_path)
-print(result)
+
 
 def extract_text(file_path):
       text = ""
