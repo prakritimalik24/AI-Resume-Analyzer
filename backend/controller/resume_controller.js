@@ -11,14 +11,19 @@ const analyzeResume = async (req , res) => {
         formdata.append("job_description" , req.body.job_description);
 
         const response = await axios.post(
-            `${process.env.PYTHON_API_KEY}/analyze`,
+            `${process.env.PYTHON_API_URL}/analyze`,
             formdata , {headers : formdata.getHeaders()}
         );
         res.json(response.data);
     } catch (error) {
-        console.error("Error analyzing resume:", error);
-        res.status(500).json({ error: "Failed to analyze resume" });
-    }
+    console.log("ERROR:", error.message);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.status(500).json({
+        error: error.message,
+        details: error.response?.data
+    });
+}
 };
 
 module.exports = { analyzeResume };
