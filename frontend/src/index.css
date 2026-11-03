@@ -6,7 +6,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
+  --font-heading: "Bespoke Serif", serif;
+    /* --font-heading: var(--font-sans); */
     --font-sans: 'Geist Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -127,4 +128,11 @@
   html {
     @apply font-sans;
     }
+}
+
+@font-face {
+  font-family: "Bespoke Serif";
+  src: url("./assets/fonts/Heading.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
 }
