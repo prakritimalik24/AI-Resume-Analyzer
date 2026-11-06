@@ -7,7 +7,7 @@ function Home() {
        <div>
             <Navbar />
 
-            <main>
+            <main className="min-h-screen flex items-center justify-center bg-[#080810]">
 
             </main>
 
