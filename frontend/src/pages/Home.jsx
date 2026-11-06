@@ -1,8 +1,12 @@
-import React from "react";
+import React , {useState} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function Home() {
+    const [resume, setResume] = useState(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [error, setError] = useState("");
+
     return(
        <div className="bg-[#080810] min-h-screen ">
             <Navbar />
@@ -29,7 +33,27 @@ function Home() {
     Upload Your Resume
 </h2>
 
-<div className = "w-full min-h-48  border-2 border-dashed border-gray-800 rounded-xl flex flex-col items-center justify-center gap-3 cursor-pointer p-5 transition-all duration-200">
+<div className = {`w-full min-h-48  border-2 border-dashed border-gray-800 rounded-xl flex flex-col items-center justify-center gap-3 cursor-pointer p-5 transition-all duration-200 
+${isDragging ? "bg-gray-800" : 
+    "bg-[#10111D]"
+
+}`}
+onDragOver={(e) => {
+    e.preventDefault();
+    setIsDragging(true);
+}}
+onDragLeave={() =>{ setIsDragging(false);
+
+}}
+onDrop={(e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if(file){
+        setResume(file);
+    }
+}}
+>
     <p className="text-gray-500 text-sm">Drag and drop your resume here</p>
     <p className="text-gray-500 text-xs">or</p>
 
@@ -37,9 +61,24 @@ function Home() {
         Browse Files
     </label>
 
-    <input type="file" id="resume"
+    {
+resume && (
+    <p className="text-green-500 text-sm mt-2">Selected file: {resume.name}</p>
+)
+    }
+
+    {error && (
+        <p className="text-red-500 text-sm mt-2">{error}</p>
+    )}
+
+    <input type="file" 
+    id="resume"
     accept=".pdf,.png,.jpg,.jpeg"
-    className="hidden" />
+    className="hidden" 
+    onChange={(e) => {setResume(e.target.files[0]);
+        console.log(e.target.files[0])
+    }}
+    />
 
     <p className="text-gray-500 text-sm">
         Supported formats: PDF, PNG, JPG, JPEG
