@@ -4,8 +4,25 @@ import Footer from "../components/Footer";
 
 function Home() {
     const [resume, setResume] = useState(null);
+    const [jobDescription, setJobDescription] = useState("");
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!resume) {
+            setError("Please upload a resume.");
+            return;
+        }
+        if (!jobDescription) {
+            setError("Please enter a job description.");
+            return;
+        }
+        setError("");
+
+        console.log("Resume:", resume);
+        console.log("Job Description:", jobDescription);
+    };
 
     return(
        <div className="bg-[#080810] min-h-screen ">
@@ -24,11 +41,13 @@ function Home() {
 <div className = "w-full p-4 ">
 
 
-<form className =" w-full flex flex-col items-center justify-between gap-3">
+<form 
+onSubmit = {handleSubmit}
+className =" w-full flex flex-col items-center justify-between gap-3">
    
-    <div className = "w-full flex flex-col md:flex-row items-center justify-between gap-6">
+    <div className = "w-full  flex flex-col md:flex-row items-stretch gap-6">
          {/* upload resume */}
-    <div className = "w-full md:w-1/2 bg-[#10111D] border border-gray-900 rounded-2xl p-5 sm:p-7 flex-col items-center gap-">
+    <div className = "w-full md:w-1/2 h-full md:flex-1 self-stretch bg-[#10111D] border border-gray-900 rounded-2xl p-5 sm:p-7 flex flex-col items-center gap-">
 <h2 className = "font-heading font-bold text-xl sm:text-2xl md:text-3xl text-blue-300 text-center mb-8">
     Upload Your Resume
 </h2>
@@ -57,7 +76,7 @@ onDrop={(e) => {
     <p className="text-gray-500 text-sm">Drag and drop your resume here</p>
     <p className="text-gray-500 text-xs">or</p>
 
-    <label htmlFor="resume" className="px-5 py-2 rounded-lg bg-green-500 text-white text-sm cursor-pointer hover:bg-green-600 transition-all duration-200">
+    <label htmlFor="resume" className="px-5 py-2 rounded-lg bg-slate-600 text-white text-sm cursor-pointer hover:bg-green-600 transition-all duration-200">
         Browse Files
     </label>
 
@@ -67,9 +86,7 @@ resume && (
 )
     }
 
-    {error && (
-        <p className="text-red-500 text-sm mt-2">{error}</p>
-    )}
+    
 
     <input type="file" 
     id="resume"
@@ -89,15 +106,26 @@ resume && (
   
 
     {/* job description */}
-    <div className = "w-full md:w-1/2 bg-[#10111D] border border-gray-900 rounded-2xl p-5 sm:p-7 flex-col items-center gap-">
-<h2 className = "font-heading font-bold text-xl sm:text-2xl md:text-3xl text-blue-300 text-center mb-5">
-    Paste Your Job Description
+    <div className = "w-full md:w-1/2 h-full md:flex-1 self-stretch bg-[#10111D] border border-gray-900 rounded-2xl p-5 sm:p-7 flex flex-col items-center gap-4">
+<h2 className = "font-heading font-bold text-xl sm:text-2xl md:text-3xl text-blue-300 text-center mb-8">
+    Job Description
 </h2>
 
+     <textarea
+     value={jobDescription}
+    onChange={(e) => setJobDescription(e.target.value)}
+    className="w-full min-h-44 bg-[#080810]  border border-gray-800 rounded-xl p-3 text-gray-300 text-sm   transition-all duration-200 "
+    placeholder="Paste job description here..."
+    ></textarea>
     </div>
     </div>
+    {error && (
+        <p className="text-red-500 text-sm mt-2">{error}</p>
+    )}
 
-    <button type="submit"
+    <button
+    className = "bg-gradient-to-r from-green-900 via-green-600 to-green-900 font-bold text-lg hover:scale-110 hover:text-white transition-all duration-200 w-1/2 cursor-pointer p-3 rounded-full "
+     type="submit"
     >Analyze</button>
 
       </form>
