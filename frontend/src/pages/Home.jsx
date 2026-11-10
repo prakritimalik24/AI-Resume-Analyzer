@@ -1,14 +1,16 @@
 import React , {useState} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { analyzeResume } from "../services/api";
 
 function Home() {
     const [resume, setResume] = useState(null);
     const [jobDescription, setJobDescription] = useState("");
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!resume) {
             setError("Please upload a resume.");
@@ -18,10 +20,24 @@ function Home() {
             setError("Please enter a job description.");
             return;
         }
-        setError("");
 
-        console.log("Resume:", resume);
-        console.log("Job Description:", jobDescription);
+    try{
+         setError("");
+         setLoading(true);
+
+         const result = await analyzeResume(resume , jobDescription);
+         console.log("Analysis Result:", result);
+        
+    } catch (err) {
+   setError(
+err.response?.data?.detail || "An error occurred while analyzing the resume."
+   );
+    } finally {
+        setLoading(false);
+    }
+       
+
+        
     };
 
     return(
@@ -124,9 +140,10 @@ resume && (
     )}
 
     <button
+    disabled={loading}
     className = " mt-4 bg-gradient-to-r from-green-900 via-green-600 to-green-900 font-bold text-lg hover:scale-110 hover:text-white transition-all duration-200 w-1/2 cursor-pointer p-3 rounded-full "
      type="submit"
-    >Analyze</button>
+    > {loading ? "Analyzing..." : "Analyze"}</button>
 
       </form>
 </div>
