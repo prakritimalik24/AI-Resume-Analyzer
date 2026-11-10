@@ -32,7 +32,7 @@ function Home() {
 
 <div className = " text-center">
 
-<h1 className = "font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-green-400">Make your resume stand out.</h1>
+<h1 className = "font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-green-600">Make your resume stand out.</h1>
 </div>
 
 {/* 3d model */}
@@ -124,7 +124,7 @@ resume && (
     )}
 
     <button
-    className = "bg-gradient-to-r from-green-900 via-green-600 to-green-900 font-bold text-lg hover:scale-110 hover:text-white transition-all duration-200 w-1/2 cursor-pointer p-3 rounded-full "
+    className = " mt-4 bg-gradient-to-r from-green-900 via-green-600 to-green-900 font-bold text-lg hover:scale-110 hover:text-white transition-all duration-200 w-1/2 cursor-pointer p-3 rounded-full "
      type="submit"
     >Analyze</button>
 
