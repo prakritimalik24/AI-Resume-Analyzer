@@ -11,9 +11,9 @@ function Intro() {
     useEffect(() => {
         const timers = [
             setTimeout(() => setScene("upload"), 2000),
-            setTimeout(() => setScene("analyze"), 3200),
-            setTimeout(() => setScene("improve"), 4000),
-            setTimeout(() => navigate("/home"), 5000),
+            setTimeout(() => setScene("analyze"), 3500),
+            setTimeout(() => setScene("improve"), 4500),
+            setTimeout(() => navigate("/home"), 5500),
         ];
 
         return () => timers.forEach((timer) => clearTimeout(timer));

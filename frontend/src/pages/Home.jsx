@@ -2,6 +2,7 @@ import React , {useState} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { analyzeResume } from "../services/api";
+import {useNavigate} from 'react-router-dom';
 
 function Home() {
     const [resume, setResume] = useState(null);
@@ -9,6 +10,7 @@ function Home() {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,6 +29,7 @@ function Home() {
 
          const result = await analyzeResume(resume , jobDescription);
          console.log("Analysis Result:", result);
+         navigate("/results" , {state: {result}});
         
     } catch (err) {
    setError(
