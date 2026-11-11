@@ -6,9 +6,12 @@ const analyzeResume = async (req , res) => {
     try{
         const formdata = new FormData();
 
+        console.log("EXPRESS BODY:", req.body);
+console.log("JOB DESCRIPTION:", req.body.job_description);
+
         formdata.append("resume" , req.file.buffer , req.file.originalname);
 
-        formdata.append("job_description" , req.body.job_description);
+        formdata.append("job_description" , req.body.jobdescription);
 
         const response = await axios.post(
             `${process.env.PYTHON_API_URL}/analyze`,
