@@ -9,7 +9,10 @@ api_key = os.getenv("GROQ_API_KEY")
 client =  Groq(api_key = api_key)
 
 
+
 def analyze_resume(resume_text, job_description):
+
+    
 
     
     prompt = f"""
@@ -278,7 +281,14 @@ def analyze_resume(resume_text, job_description):
     )
 
     result = response.choices[0].message.content
-    return json.loads(result)
 
+    
+
+    parsed_result = json.loads(result)
+
+    
+    return parsed_result
+
+   
 
 

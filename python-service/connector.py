@@ -13,9 +13,16 @@ def connect(file_path , job_description):
         raise ValueError("Could not extract text from resume")
 
 
-    analysis = analyze_resume(resume_text , job_description)
+    # analysis = analyze_resume(resume_text , job_description)
 
+    # matcher_result = skill_matcher(analysis)
+
+    analysis = analyze_resume(resume_text, job_description)
+
+    
     matcher_result = skill_matcher(analysis)
+
+    
 
     final_result = {
         "analysis" : analysis,
