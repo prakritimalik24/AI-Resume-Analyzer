@@ -10,6 +10,9 @@ function Result() {
 
     const atsmatch = result?.ats_match;
     const analysis = result?.analysis;
+        console.log("Resume Skills:", analysis?.resume_skills);
+        console.log("Strengths:", analysis?.strengths);
+
 
     const score = atsmatch?.matching_percent ?? 0;
 
@@ -81,7 +84,16 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
 
            </div>
 
+           <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
+            <h2 className ="text-xl sm:text-2xl font-bold text-white mb-5">Skills Overview</h2>
+            <div className ="flex flex-wrap gap-1 ">{analysis?.resume_skills?.length > 0 ? (analysis.resume_skills.map((skill , index) =>(
+              <span 
+              key={index}
+               className=" px-4 py-2 m-3 inline-flex items-center rounded-full border border-blue-300 text-blue-300 ">{skill}</span>)) ): (
+               <p className="text-gray-400">No skills found in the resume</p>)}</div>
+           </div>
 
+  
             <Footer/>
         </div>
     )
