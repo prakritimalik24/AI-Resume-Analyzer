@@ -24,6 +24,8 @@ function Result() {
 
     const missingcount = analysis?.missing_skills_and_requirements?.length ?? 0;
 
+    const strengths = analysis?.strengths ?? [];
+
     return(
        <div className="bg-[#080810] min-h-screen ">
             <Navbar/>
@@ -91,6 +93,22 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
               key={index}
                className=" px-4 py-2 m-3 inline-flex items-center rounded-full border border-blue-300 text-blue-300 ">{skill}</span>)) ): (
                <p className="text-gray-400">No skills found in the resume</p>)}</div>
+           </div>
+
+           <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
+
+            <h2 className = "text-xl sm:text-2l font-bold text-white mb-5">Your Strengths</h2>
+
+            {strengths?.length > 0 ? (strengths.map((item,index) => (
+              <div key={index} className = "mb-5">
+              <h3 className = "text-white font-semibold">{item.strength}</h3>
+              <p className = "text-gray-400 text-sm mt-2"><strong>Evidence:</strong>{item.evidence}</p>
+               <p className="text-gray-400 text-sm mt-2">
+                    <strong>Job Relevance:</strong> {item.job_relevance}
+                </p>
+
+              </div>
+            ))) : ( <p className = "text-gray-400">No strengths found</p>)}
            </div>
 
   
