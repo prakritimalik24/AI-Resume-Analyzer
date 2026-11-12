@@ -12,6 +12,10 @@ function Result() {
     const analysis = result?.analysis;
         console.log("Resume Skills:", analysis?.resume_skills);
         console.log("Strengths:", analysis?.strengths);
+        console.log(
+    "Missing Skills:",
+    analysis?.missing_skills_and_requirements
+);
 
 
     const score = atsmatch?.matching_percent ?? 0;
@@ -25,6 +29,8 @@ function Result() {
     const missingcount = analysis?.missing_skills_and_requirements?.length ?? 0;
 
     const strengths = analysis?.strengths ?? [];
+
+    const missingSkills = analysis?.missing_skills_and_requirements ?? [];
 
     return(
        <div className="bg-[#080810] min-h-screen ">
@@ -88,7 +94,8 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
 
            <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
             <h2 className ="text-xl sm:text-2xl font-bold text-white mb-5">Skills Overview</h2>
-            <div className ="flex flex-wrap gap-1 ">{analysis?.resume_skills?.length > 0 ? (analysis.resume_skills.map((skill , index) =>(
+            <div className ="flex flex-wrap gap-1 ">
+              {analysis?.resume_skills?.length > 0 ? (analysis.resume_skills.map((skill , index) =>(
               <span 
               key={index}
                className=" px-4 py-2 m-3 inline-flex items-center rounded-full border border-blue-300 text-blue-300 ">{skill}</span>)) ): (
@@ -111,6 +118,18 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
             ))) : ( <p className = "text-gray-400">No strengths found</p>)}
            </div>
 
+           <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
+
+            <h2 className = "text-xl sm:text-2l font-bold text-white mb-5">Areas to Improve</h2>
+             <div className ="flex flex-wrap gap-1 ">
+
+            {missingSkills?.length > 0 ? (missingSkills.map((item,index) => (
+              <span 
+              key={index}
+               className=" px-4 py-2 m-3 inline-flex items-center rounded-full border border-orange-800 text-orange-300 ">{item.skill}</span>
+            ))) : ( <p className = "text-gray-400">No missing skills found</p>)}
+           </div>
+</div>
   
             <Footer/>
         </div>
