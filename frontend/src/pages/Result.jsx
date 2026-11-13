@@ -28,6 +28,7 @@ function Result() {
 
 const weaknesses = analysis?.weaknesses_and_gaps ?? [];
 const qualityReview = analysis?.overall_resume_quality_review ?? [];
+const suggestions = analysis?.job_specific_suggestions ?? [];
 
     return(
        <div className="bg-[#080810] min-h-screen ">
@@ -160,8 +161,23 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
 
 
 
+  <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
 
-  
+            <h2 className = "text-xl sm:text-2l font-bold text-white mb-5">Job-Specific Suggestions</h2>
+
+            {suggestions?.length > 0 ? (suggestions.map((suggestion,index) => (
+              <div key={index} className = "flex item-start gap-3 mb-5">
+                 <span className="text-blue-400 font-bold">
+                    {index + 1}.
+                </span>
+
+                <p className="text-gray-300 text-sm">
+                    {suggestion}
+                </p>
+               </div>))) : ( <p className = "text-gray-400">No suggestions available.</p>)}
+
+</div>
+
             <Footer/>
         </div>
     )
