@@ -10,13 +10,7 @@ function Result() {
 
     const atsmatch = result?.ats_match;
     const analysis = result?.analysis;
-        console.log("Resume Skills:", analysis?.resume_skills);
-        console.log("Strengths:", analysis?.strengths);
-        console.log(
-    "Missing Skills:",
-    analysis?.missing_skills_and_requirements
-);
-
+    console.log("COMPLETE ANALYSIS:", analysis);
 
     const score = atsmatch?.matching_percent ?? 0;
 
@@ -31,6 +25,8 @@ function Result() {
     const strengths = analysis?.strengths ?? [];
 
     const missingSkills = analysis?.missing_skills_and_requirements ?? [];
+
+const weaknesses = analysis?.weaknesses_and_gaps ?? [];
 
     return(
        <div className="bg-[#080810] min-h-screen ">
@@ -130,6 +126,24 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
             ))) : ( <p className = "text-gray-400">No missing skills found</p>)}
            </div>
 </div>
+
+
+
+  <div className = "w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7  mt-6">
+
+            <h2 className = "text-xl sm:text-2l font-bold text-white mb-5">Weaknesses and Gaps</h2>
+
+            {weaknesses?.length > 0 ? (weaknesses.map((item,index) => (
+              <div key={index} className = "mb-5">
+              <h3 className = "text-white font-semibold">{item.issue}</h3>
+              <p className = "text-gray-400 text-sm mt-2">{item.explaination}</p>
+               </div>))) : ( <p className = "text-gray-400">No weaknesses found</p>)}
+
+</div>
+
+
+
+
   
             <Footer/>
         </div>
