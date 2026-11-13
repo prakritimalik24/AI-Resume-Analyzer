@@ -1,33 +1,40 @@
-from fastapi import FastAPI , UploadFile , File , Form , HTTPException;
-from pathlib import Path;
-import os;
-import tempfile;
-from connector import connect;
+
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from pathlib import Path
+import os
+import tempfile
+
+from connector import connect
+
 
 app = FastAPI(
-    title = "AI Resume Analyzer",
-    description= "Analyse your resume against a job description",
-    version= " 1.0.0"
+    title="AI Resume Analyzer",
+    description="Analyse your resume against a job description",
+    version="1.0.0"
 )
+
 
 @app.post("/analyze")
 async def analyze_resume_endpoint(
-    resume : UploadFile = File(...),
-    job_description : str = Form(...)
+    resume: UploadFile = File(...),
+    job_description: str = Form(...)
 ):
+
+    print("MAIN API CALLED", flush=True)
+
     if not job_description.strip():
         raise HTTPException(
             status_code=400,
             detail="Job description cannot be empty"
         )
 
-    allowed_extensions = {".pdf" , ".png" ,".jpg" ,".jpeg"}
-    extension = Path(resume.filename or " ").suffix.lower()
+    allowed_extensions = {".pdf", ".png", ".jpg", ".jpeg"}
+    extension = Path(resume.filename or "").suffix.lower()
 
     if extension not in allowed_extensions:
         raise HTTPException(
             status_code=400,
-            detail="Only PDF , PNG , JPG and JPEG files are supported"
+            detail="Only PDF, PNG, JPG and JPEG files are supported"
         )
 
     content = await resume.read()
@@ -42,39 +49,53 @@ async def analyze_resume_endpoint(
         raise HTTPException(
             status_code=413,
             detail="Resume must be smaller than 10MB"
-        ) 
+        )
 
     temp_path = None
 
     try:
 
+        print("RESUME VALIDATION COMPLETED", flush=True)
+
         with tempfile.NamedTemporaryFile(
             delete=False,
             suffix=extension
         ) as temp_file:
+
             temp_file.write(content)
             temp_path = temp_file.name
 
+        print("TEMP FILE CREATED:", temp_path, flush=True)
+        print("CALLING CONNECT FUNCTION", flush=True)
 
-        result = connect(temp_path , job_description)   
+        result = connect(temp_path, job_description)
+
+        print("CONNECT FUNCTION COMPLETED", flush=True)
 
         return result
 
-
     except ValueError as error:
+
+        print("VALIDATION ERROR:", repr(error), flush=True)
+
         raise HTTPException(
             status_code=400,
             detail=str(error)
         )
 
-    except Exception:
+    except Exception as error:
+
+        print("ACTUAL ERROR:", repr(error), flush=True)
+
         raise HTTPException(
             status_code=500,
             detail="Resume analysis failed."
         )
 
     finally:
+
         if temp_path and os.path.exists(temp_path):
             os.remove(temp_path)
+            print("TEMP FILE DELETED", flush=True)
 
         await resume.close()
