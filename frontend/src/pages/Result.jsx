@@ -247,24 +247,6 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
 <div className="w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7 mt-6">
 
   <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
-    Formatting & Design Review
-  </h2>
-
-  {formattingReview ? (
-    <p className="text-gray-300 text-sm leading-7">
-      {formattingReview}
-    </p>
-  ) : (
-    <p className="text-gray-400">
-      No formatting review available.
-    </p>
-  )}
-
-</div>
-
-<div className="w-full bg-[#10111D] border border-gray-700 rounded-2xl p-5 sm:p-7 mt-6">
-
-  <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
     Project Evidence
   </h2>
 
