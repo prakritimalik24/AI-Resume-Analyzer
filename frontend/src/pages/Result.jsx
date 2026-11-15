@@ -368,7 +368,7 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
 
   <button
     onClick={() => navigate("/home")}
-    className="px-8 py-3 rounded-xl  cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-all duration-300 shadow-lg shadow-blue-500/20"
+    className="px-8 py-3 rounded-xl  cursor-pointer  bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-all duration-300 shadow-lg shadow-blue-500/20"
   >
     Analyze Another Resume →
   </button>
