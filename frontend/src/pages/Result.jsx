@@ -1,11 +1,12 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate} from "react-router-dom";
 
 function Result() {
     const location = useLocation();
     const result  = location.state?.result;
+    const navigate = useNavigate();
 
     const atsmatch = result?.ats_match;
     const analysis = result?.analysis;
@@ -360,6 +361,17 @@ style ={{background: `conic-gradient(#22c55e ${score}% , #ffffff ${score}% )`}}
   ) : (
     <p className="text-gray-400">No assessment available.</p>
   )}
+
+</div>
+
+<div className="flex justify-center mt-10 mb-12">
+
+  <button
+    onClick={() => navigate("/home")}
+    className="px-8 py-3 rounded-xl  cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-all duration-300 shadow-lg shadow-blue-500/20"
+  >
+    Analyze Another Resume →
+  </button>
 
 </div>
 

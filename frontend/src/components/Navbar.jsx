@@ -22,7 +22,7 @@ function Navbar() {
        Resources
    </Link>
 
-   <Link to="/working" className="text-white hover:text-gray-300 hover:font-bold hover:scale-105 cursor-pointer font-heading2 transition-all duration-100">
+   <Link to="/how-it-works" className="text-white hover:text-gray-300 hover:font-bold hover:scale-105 cursor-pointer font-heading2 transition-all duration-100">
        How it works
    </Link>
 
