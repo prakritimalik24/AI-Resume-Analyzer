@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 const features = [
   {
@@ -57,12 +58,12 @@ function About() {
             and discover ways to present your experience more effectively.
           </p>
 
-          <a
-            href="/home"
+          <Link
+            to="/home"
             className="inline-flex mt-9 px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition text-white font-semibold"
           >
             Analyze Your Resume
-          </a>
+          </Link>
 
         </section>
 
@@ -146,12 +147,12 @@ function About() {
               Take the next step towards a more targeted resume.
             </p>
 
-            <a
-              href="/home"
+            <Link
+              to="/home"
               className="inline-flex px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-semibold"
             >
               Get Started
-            </a>
+            </Link>
 
           </div>
 

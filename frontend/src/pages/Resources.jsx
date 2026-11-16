@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 const resourceSections = [
   {
@@ -290,12 +291,12 @@ function Resources() {
             Get a personalized analysis of your resume with ResuMate.
           </p>
 
-          <a
-            href="/home"
+          <Link
+            to="/home"
             className="inline-flex px-7 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-semibold"
           >
             Analyze Your Resume
-          </a>
+          </Link>
 
         </section>
 
