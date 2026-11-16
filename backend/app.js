@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors({
     origin: ["http://localhost:5173",
-    "https://ai-resume-analyzer-navy-five.vercel.app/"] ,
+    "https://ai-resume-analyzer-navy-five.vercel.app"] ,
     credentials: true
 }));
 
