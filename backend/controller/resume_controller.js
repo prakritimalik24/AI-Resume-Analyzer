@@ -7,7 +7,7 @@ const analyzeResume = async (req , res) => {
         const formdata = new FormData();
 
         console.log("EXPRESS BODY:", req.body);
-console.log("JOB DESCRIPTION:", req.body.job_description);
+console.log("JOB DESCRIPTION:", req.body.jobdescription);
 
         formdata.append("resume" , req.file.buffer , req.file.originalname);
 
