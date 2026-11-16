@@ -9,6 +9,12 @@
 </p>
 
 ---
+
+## Live Demo 
+<p>https://ai-resume-analyzer-navy-five.vercel.app/</p> 
+
+
+<br/>
 <p align="center">
   <img src="Home.png" alt="ResuMate Banner" width="100%" />
 </p>
